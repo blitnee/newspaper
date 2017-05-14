@@ -83,7 +83,7 @@ gulp.task('watch', function() {
         // a different device that is on the local network
 	browserSync.init({
 		open: 'external',
-		proxy: 'newspaper.dev', // !!! Live URL of current project
+		proxy: 'http://localhost:8080/newspaper/', // !!! Live URL of current project
 		port: 8080
 	});
         // Essentially: if change in file -> run task
