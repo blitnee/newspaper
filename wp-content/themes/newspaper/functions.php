@@ -72,6 +72,69 @@ endif;
 add_action( 'after_setup_theme', 'newspaper_setup' );
 
 /**
+ * Register custom fonts.
+ */
+function newspaper_fonts_url() {
+	$fonts_url = '';
+        
+	/**
+	 * Translators: If there are characters in your language that are not
+	 * supported by Open Sans and Oswald, translate this to 'off'. Do not translate
+	 * into your own language.
+	 */
+	$open_sans = _x( 'on', 'Open Sans font: on or off', 'newspaper' );
+	$oswald = _x( 'on', 'Oswald font: on or off', 'newspaper' );
+
+        $font_families = array();
+        
+        if ( 'off' !== $open_sans ) {
+
+		$font_families[] = 'Open Sans';
+        }   
+        
+        if ( 'off' !== $oswald ) {
+
+		$font_families[] = 'Oswald';
+        }
+        
+	if ( in_array( 'on', array($open_sans, $oswald) ) ) {
+
+        
+		$query_args = array(
+			'family' => urlencode( implode( '|', $font_families ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		);
+
+		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+	}
+
+	return esc_url_raw( $fonts_url );
+}
+
+
+/**
+ * Add preconnect for Google Fonts.
+ *
+ * @since Twenty Seventeen 1.0
+ *
+ * @param array  $urls           URLs to print for resource hints.
+ * @param string $relation_type  The relation type the URLs are printed.
+ * @return array $urls           URLs to print for resource hints.
+ */
+function newspaper_resource_hints( $urls, $relation_type ) {
+	if ( wp_style_is( 'newspaper-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href' => 'https://fonts.gstatic.com',
+			'crossorigin',
+		);
+	}
+
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'newspaper_resource_hints', 10, 2 );
+
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
@@ -105,7 +168,10 @@ add_action( 'widgets_init', 'newspaper_widgets_init' );
  * Enqueue scripts and styles.
  */
 function newspaper_scripts() {
-	wp_enqueue_style( 'newspaper-style', get_stylesheet_uri() );
+	// Enqueue Google Fonts: Oswald and Open Sans
+        wp_enqueue_style( 'newspaper-fonts', newspaper_fonts_url() );
+    
+        wp_enqueue_style( 'newspaper-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'newspaper-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
