@@ -265,14 +265,60 @@ select,
 textarea {
 	color: #404040;
 	font-family: "Open Sans", sans-serif;
-	font-size: 16px;
-	font-size: 1rem;
+	font-size: 20px;
+	font-size: 1.25rem;
 	line-height: 1.5;
+}
+
+@media screen and (max-width: 480px) {
+	body,
+	button,
+	input,
+	select,
+	textarea {
+		font-size: 16px;
+		font-size: 1rem;
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+	body,
+	button,
+	input,
+	select,
+	textarea {
+		font-size: 18px;
+		font-size: 1.125rem;
+	}
 }
 
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
 	font-family: "Oswald", sans-serif;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2.6em;
+}
+
+h3 {
+	font-size: 2.2em;
+}
+
+h4 {
+	font-size: 2em;
+}
+
+h5 {
+	font-size: 1.8em;
+}
+
+h6 {
+	font-size: 1.6em;
 }
 
 p {
@@ -294,8 +340,8 @@ address {
 pre {
 	background: #eee;
 	font-family: "Courier 10 Pitch", Courier, monospace;
-	font-size: 15px;
-	font-size: 0.9375rem;
+	font-size: 18.75px;
+	font-size: 1.17188rem;
 	line-height: 1.6;
 	margin-bottom: 1.6em;
 	max-width: 100%;
@@ -305,8 +351,8 @@ pre {
 
 code, kbd, tt, var {
 	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-	font-size: 15px;
-	font-size: 0.9375rem;
+	font-size: 18.75px;
+	font-size: 1.17188rem;
 }
 
 abbr, acronym {
@@ -412,8 +458,8 @@ input[type="submit"] {
 	border-radius: 3px;
 	background: #e6e6e6;
 	color: rgba(0, 0, 0, 0.8);
-	font-size: 12px;
-	font-size: 0.75rem;
+	font-size: 15px;
+	font-size: 0.9375rem;
 	line-height: 1;
 	padding: .6em 1em .4em;
 }
@@ -491,15 +537,15 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-	color: royalblue;
+	color: inherit;
 }
 
 a:visited {
-	color: purple;
+	color: inherit;
 }
 
 a:hover, a:focus, a:active {
-	color: midnightblue;
+	color: royalblue;
 }
 
 a:focus {
@@ -621,8 +667,8 @@ a:hover, a:active {
 	clip: auto !important;
 	color: #21759b;
 	display: block;
-	font-size: 14px;
-	font-size: 0.875rem;
+	font-size: 17.5px;
+	font-size: 1.09375rem;
 	font-weight: bold;
 	height: auto;
 	left: 5px;

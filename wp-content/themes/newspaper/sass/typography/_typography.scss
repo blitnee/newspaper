@@ -7,6 +7,17 @@ textarea {
 	font-family: $font__sans;
 	@include font-size(1);
 	line-height: $font__line-height-body;
+        
+        //phone general
+        @media screen and (max-width: 480px){
+            @include font-size(.8);
+        }
+        
+        @media screen and (min-width: 481px) and (max-width: 768px){
+            @include font-size(.9);
+        }
+        
+        
 }
 
 @import "headings";
