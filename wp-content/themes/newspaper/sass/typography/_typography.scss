@@ -9,11 +9,12 @@ textarea {
 	line-height: $font__line-height-body;
         
         //phone general
-        @media screen and (max-width: 480px){
+        @media screen and (max-width: $query__small){
             @include font-size(.8);
         }
         
-        @media screen and (min-width: 481px) and (max-width: 768px){
+        //tablet general
+        @media screen and (min-width: $query__small) and (max-width: $query__medium){
             @include font-size(.9);
         }
         
